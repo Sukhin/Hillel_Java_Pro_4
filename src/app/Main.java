@@ -14,23 +14,39 @@ public class Main {
         int count = 1;
 
         while (count <= numberCustomers) {
+            String name = "";
+            boolean indicator1 = true;
 
-            System.out.print("Enter the name of the customer: ");
-            String name = enter.nextLine();
-
-            if (isCorrectName(name)) {
-                System.out.println("The entered name is correct!");
-                System.out.print("\n");
-            } else {
-                System.out.println("The entered name is incorrect!");
-                System.out.print("\n");
-                continue;
+            while (indicator1) {
+                System.out.print("Enter the name of the customer: ");
+                name = enter.nextLine();
+                if (isCorrectName(name)) {
+                    System.out.println("The entered name is correct!");
+                    indicator1 = false;
+                    System.out.print("\n");
+                } else {
+                    System.out.println("The entered name is incorrect!");
+                    System.out.print("\n");
+                }
             }
 
-            System.out.print("Enter the phone of the customer: ");
-            String phone = enter.nextLine();
+            String phone = "";
+            boolean indicator2 = true;
 
-            System.out.print("\n");
+            while (indicator2) {
+                System.out.print("Enter the phone of the customer: ");
+                phone = enter.nextLine();
+                if (isCorrectPhone(phone)) {
+                    System.out.println("The entered number of the phone is correct!");
+                    indicator2 = false;
+                    System.out.print("\n");
+
+                } else {
+                    System.out.println("The entered number of the phone is incorrect!");
+                    System.out.print("\n");
+                }
+            }
+
             Customer customer = getCustomer(getData(name, phone));
             String output = String.format("Customer: %s, phone: %s", customer.getName(), customer.getPhone());
             getOutput(output);
@@ -51,9 +67,7 @@ public class Main {
                 '=', '№', '.', ',', '/', '{', '}', '[', ']', ';', ':', '<', '>', '|'};
 
         for (int i : arrayName) {
-
             for (int j : arraySymbols) {
-
                 if (i == j) {
                     return false;
                 }
@@ -71,13 +85,10 @@ public class Main {
                 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
         for (int i : arrayPhone) {
-
             for (int j : arraySymbols) {
-
                 if (i == j) {
                     return false;
                 }
-
             }
         }
         return true;
